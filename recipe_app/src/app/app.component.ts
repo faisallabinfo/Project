@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Recipe } from './recipes/recipe.model';
+import { Component, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,4 @@ import { Recipe } from './recipes/recipe.model';
 })
 export class AppComponent {
   title = 'recipe_app';
-
-  loadedFeature:string;
-  onNavigateEvent(feature:string) {
-    this.loadedFeature=feature;
-  }
 }

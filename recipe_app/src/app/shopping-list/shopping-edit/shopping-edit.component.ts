@@ -1,5 +1,7 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Ingridient } from 'src/app/shared/ingridient.model';
+import { ShoppingListService } from '../shopping-list.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -7,15 +9,13 @@ import { Ingridient } from 'src/app/shared/ingridient.model';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent {
+  constructor(private shoppingListService:ShoppingListService) {}
   @ViewChild('nameInput') nameInputRef:ElementRef;
   @ViewChild('amountInput') amountInputRef:ElementRef;
-  @Output() ingridientAdded = new EventEmitter<Ingridient>();
-
-  onAdd() {
-    const newIngrident=new Ingridient(this.nameInputRef.nativeElement.value,this.amountInputRef.nativeElement.value);
-    this.ingridientAdded.emit(newIngrident);
+  
+  onSubmit(data:NgForm) {
+    data.valid?this.shoppingListService.addIngridient((data.value)):alert("Please add value!");
   }
-
   onDelete() {
     
   }
