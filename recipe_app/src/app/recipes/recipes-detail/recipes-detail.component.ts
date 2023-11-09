@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Ingridient } from 'src/app/shared/ingridient.model';
 
 @Component({
   selector: 'app-recipes-detail',
@@ -27,5 +28,10 @@ export class RecipesDetailComponent implements OnInit{
 
   editRecipe() {
     this.router.navigate(['edit'],{relativeTo:this.activatedRoute});
+  }
+
+  deleteRecipe() {
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['/recipes']);
   }
 }

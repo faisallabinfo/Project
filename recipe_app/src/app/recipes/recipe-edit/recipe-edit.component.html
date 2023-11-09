@@ -1,1 +1,64 @@
-<p>recipe-edit works!</p>
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid">Save</button>
+                    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name" type="text" class="form-control" formControlName="name">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="imgUrl">Image URL</label>
+                        <input type="text" class="form-control" formControlName="imagePath" #imageUrl>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="imageUrl.value!==null">
+                <div class="col-xs-12">
+                    <img [src]="imageUrl.value" alt="" class="img-responsive" style="height: 500px;width: 5x00px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="dsecription">Description</label>
+                        <textarea id="dsecription" type="text" class="form-control" rows="6" formControlName="description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="ingridients">
+                   <div class="row" *ngFor="let ingridient of controls;let i=index" [formGroupName]="i" style="margin-top: 10px;">
+                        <div class="col-xs-8">
+                            <!-- <label for="ingridientName" class="form-control">Name</label> -->
+                            <input type="text" class="form-control" formControlName="name">
+                        </div>
+                        <div class="col-xs-2">
+                            <!-- <label for="ingridientAmount" class="form-control">Amount</label> -->
+                            <input type="number" class="form-control" formControlName="amount">
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn btn-danger">X</button>
+                        </div>
+                   </div>
+                   <hr>
+                   <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-success" (click)="onAddIngridient()" type="button">Add Ingridient</button>
+                    </div>
+                   </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

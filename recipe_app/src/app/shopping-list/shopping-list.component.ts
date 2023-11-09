@@ -23,6 +23,10 @@ export class ShoppingListComponent implements OnInit{
     );
   }
 
+  onItemSelect(index:number) {
+    this.shoppingListService.startedEditing.next(index);
+  }
+
   ngOnDestroy() {
     this.shoppingListSubscription.unsubscribe();
   }
