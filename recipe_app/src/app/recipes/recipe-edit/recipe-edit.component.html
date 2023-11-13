@@ -23,9 +23,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row" *ngIf="imageUrl.value!==null">
+            <div class="row" *ngIf="imageUrl.value">
                 <div class="col-xs-12">
-                    <img [src]="imageUrl.value" alt="" class="img-responsive" style="height: 500px;width: 5x00px;">
+                    <img [src]="imageUrl.value" alt="" class="img-responsive" style="height: 300px;width: 300px;">
                 </div>
             </div>
             <div class="row">
@@ -48,7 +48,7 @@
                             <input type="number" class="form-control" formControlName="amount">
                         </div>
                         <div class="col-xs-2">
-                            <button class="btn btn-danger">X</button>
+                            <button type="button" class="btn btn-danger" (click)="onRemoveIngridient(i)">X</button>
                         </div>
                    </div>
                    <hr>

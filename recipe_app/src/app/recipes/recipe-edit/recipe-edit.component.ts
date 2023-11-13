@@ -74,18 +74,22 @@ export class RecipeEditComponent implements OnInit{
   }
 
   onSubmit() {
-
     if(this.isInEdit) {
       this.recipeService.updateRecipe(this.id,this.recipeForm.value);
     }
     else {
       this.recipeService.addRecipe(this.recipeForm.value);
     }
-    console.log(this.recipeForm.value);
-    
+    this.onCancel();
   }
 
   onCancel() {
     this.router.navigate(['../'],{relativeTo:this.activatedRoute});
+  }
+
+  onRemoveIngridient(index:number) {
+    (<FormArray>this.recipeForm.get('ingridients')).removeAt(index);
+    //console.log(index);
+    
   }
 }

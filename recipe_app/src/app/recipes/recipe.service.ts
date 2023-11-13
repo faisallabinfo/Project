@@ -12,9 +12,11 @@ export class RecipeService implements OnInit {
     constructor(private shoppingListService:ShoppingListService){}
     //Store seleted recipe
     recipeSelected=new EventEmitter<Recipe>();
-    private recipes:Recipe[]=[new Recipe("Biryani","Chicken Biryani","https://www.licious.in/blog/wp-content/uploads/2022/06/chicken-hyderabadi-biryani-01.jpg",[new Ingridient("ingri1",5),new Ingridient("ingri2",7)]),
-                            new Recipe("Shwarma","Chicken Shwarma","https://www.loveandotherspices.com/wp-content/uploads/2020/02/ChickenShawarma-Post.jpg",[new Ingridient("ingri1",5),new Ingridient("ingri2",7)])
-                        ];
+    // private recipes:Recipe[]=[new Recipe("Biryani","Chicken Biryani","https://www.licious.in/blog/wp-content/uploads/2022/06/chicken-hyderabadi-biryani-01.jpg",[new Ingridient("Rice",5),new Ingridient("Chicken",7)]),
+    //                         new Recipe("Shwarma","Chicken Shwarma","https://www.loveandotherspices.com/wp-content/uploads/2020/02/ChickenShawarma-Post.jpg",[new Ingridient("Flour",5),new Ingridient("Chicken",12)])
+    //                         ];
+
+    private recipes:Recipe[]=[];
                     
     //ngOnInit
     ngOnInit() {
@@ -45,5 +47,10 @@ export class RecipeService implements OnInit {
     deleteRecipe(index:number) {
         this.recipes.splice(index,1);
         this.recipeChanged.next(this.recipes.slice())
+    }
+
+    setRecipe(recieps:Recipe[]) {       
+        this.recipes=recieps;
+        this.recipeChanged.next(this.recipes.slice());
     }
 }

@@ -5,19 +5,21 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a class="cus-cur-pointer" routerLink="/recipes" >Recipe</a></li>
+                <li routerLinkActive="active" *ngIf="isAuthenticated"><a class="cus-cur-pointer" routerLink="/recipes" >Recipe</a></li>
                 <li routerLinkActive="active"><a class="cus-cur-pointer" routerLink="/shopping-list">Shopping List</a></li>
+                <li routerLinkActive="active" *ngIf="!isAuthenticated"><a class="cus-cur-pointer" routerLink="/auth">Authentication</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li class="cus-cur-pointer" *ngIf="isAuthenticated"><a class="dropdown-toggle" (click)="onLogout()">Logout</a></li>
                 <li class="dropdown" appDropdown>
-                    <a href="#" class="dropdown-toggle" >Manage<span class="caret"></span>   </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Save Data</a></li>
-                        <li><a href="#">Fetch Data</a></li>
+                    <a class="dropdown-toggle cus-cur-pointer" >Manage<span class="caret"></span></a>
+                    <ul class="dropdown-menu cus-cur-pointer">
+                        <li><a (click)="onSaveRecipe()">Save Data</a></li>
+                        <li><a (click)="onFetchData()">Fetch Data</a></li>
                     </ul>
                 </li>
                 <li>
-                    <app-clock></app-clock>
+                    <!-- <app-clock></app-clock> -->
                 </li>
             </ul>
             <div class="nav navbar-nav navbar-right">
