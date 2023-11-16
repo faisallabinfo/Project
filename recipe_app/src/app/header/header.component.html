@@ -1,9 +1,17 @@
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container-fluid" appMenuToggle>
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand">Recipe Book</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#headTrigger" aria-expanded="false" >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+          <a class="navbar-brand" href="#">Recipe Book</a>
         </div>
-        <div class="collapse navbar-collapse">
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" id="headTrigger">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active" *ngIf="isAuthenticated"><a class="cus-cur-pointer" routerLink="/recipes" >Recipe</a></li>
                 <li routerLinkActive="active"><a class="cus-cur-pointer" routerLink="/shopping-list">Shopping List</a></li>
@@ -11,8 +19,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="cus-cur-pointer" *ngIf="isAuthenticated"><a class="dropdown-toggle" (click)="onLogout()">Logout</a></li>
-                <li class="dropdown" appDropdown>
-                    <a class="dropdown-toggle cus-cur-pointer" >Manage<span class="caret"></span></a>
+                <li class="dropdown" appDropdown *ngIf="isAuthenticated">
+                    <a class="dropdown-toggle cus-cur-pointer"  aria-haspopup="true" aria-expanded="false">Manage<span class="caret"></span></a>
                     <ul class="dropdown-menu cus-cur-pointer">
                         <li><a (click)="onSaveRecipe()">Save Data</a></li>
                         <li><a (click)="onFetchData()">Fetch Data</a></li>
@@ -22,9 +30,6 @@
                     <!-- <app-clock></app-clock> -->
                 </li>
             </ul>
-            <div class="nav navbar-nav navbar-right">
-                
-            </div>
         </div>
     </div>
 </nav>
